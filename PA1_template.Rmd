@@ -1,3 +1,10 @@
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
+
 ##Loading and preprocessing the data
 ```{r, echo = TRUE}
 ##Load in the data ignoring .na values
@@ -17,13 +24,13 @@ hist(steps, xlab = "Steps taken per day", main = "Histogram of steps taken per d
 ```
  
 ##Calculate and report the mean and median total number of steps taken per day
-The mean step count per day is: 
+The mean step count per day is 9354.
 ```{r, echo = TRUE}
 meanSteps <- mean(steps)
 print(round(meanSteps))
 ```
 
-The median step count per day is:
+The median step count per day is 10395.
 ```{r}
 medianSteps <- median(steps)
 print(round(medianSteps))
@@ -36,8 +43,10 @@ print(round(medianSteps))
 meanInterval<- tapply(data$steps, data$interval, mean, na.rm=T)
 plot(meanInterval ~ unique(data$interval), type="l", xlab = "Minute of the Day"
 			, ylab = "Number of steps", main = "Average Daily Pattern")
+```
 
-#Obtain highest step 5-min interval
+Highest step 5-min interval: 835th minute interval @ 206 steps.
+```{r, echo = TRUE}
 maxInterval <- meanInterval[which.max(meanInterval)]
 print(maxInterval)
 
@@ -59,15 +68,15 @@ hist(stepsInterpolated , xlab = "Steps taken per day", main = "Histogram of step
 ```
 
 
-The new mean number of steps per day is:
+The new mean number of steps per day is 10766.
 ```{r, echo = TRUE}
 round(mean(stepsInterpolated ))
 ```
-The new mean number of steps per day is:
+The new mean number of steps per day is 10766.
 ```{r, echo = TRUE}
 round(median(stepsInterpolated ))
 ```
-By including interpolated data we have added additional steps equal to:
+By including interpolated data we have added 86130 additional steps.
 ```{r, echo = TRUE}
 round(abs(sum(data[,1],na.rm = T)-sum(interpolatedData[,1],na.rm = T)))
 ```

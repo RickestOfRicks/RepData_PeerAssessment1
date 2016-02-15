@@ -21,7 +21,7 @@ hist(steps, xlab = "Steps taken per day", main = "Histogram of steps taken per d
 
  
 ##Calculate and report the mean and median total number of steps taken per day
-The mean step count per day is: 
+The mean step count per day is 9354.
 
 ```r
 meanSteps <- mean(steps)
@@ -32,7 +32,7 @@ print(round(meanSteps))
 ## [1] 9354
 ```
 
-The median step count per day is:
+The median step count per day is 10395.
 
 ```r
 medianSteps <- median(steps)
@@ -55,8 +55,9 @@ plot(meanInterval ~ unique(data$interval), type="l", xlab = "Minute of the Day"
 
 ![](PA1_template_files/figure-html/unnamed-chunk-6-1.png)
 
+Highest step 5-min interval: 835th minute interval @ 206 steps.
+
 ```r
-#Obtain highest step 5-min interval
 maxInterval <- meanInterval[which.max(meanInterval)]
 print(maxInterval)
 ```
@@ -82,10 +83,10 @@ stepsInterpolated <- tapply(interpolatedData $steps, interpolatedData $date, sum
 hist(stepsInterpolated , xlab = "Steps taken per day", main = "Histogram of steps taken per day, including interpolated data")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-7-1.png)
+![](PA1_template_files/figure-html/unnamed-chunk-8-1.png)
 
 
-The new mean number of steps per day is:
+The new mean number of steps per day is 10766.
 
 ```r
 round(mean(stepsInterpolated ))
@@ -94,7 +95,7 @@ round(mean(stepsInterpolated ))
 ```
 ## [1] 10766
 ```
-The new mean number of steps per day is:
+The new mean number of steps per day is 10766.
 
 ```r
 round(median(stepsInterpolated ))
@@ -103,7 +104,7 @@ round(median(stepsInterpolated ))
 ```
 ## [1] 10766
 ```
-By including interpolated data we have added additional steps equal to:
+By including interpolated data we have added 86130 additional steps.
 
 ```r
 round(abs(sum(data[,1],na.rm = T)-sum(interpolatedData[,1],na.rm = T)))
@@ -137,6 +138,6 @@ df_final <- rbind(df_weekday, df_weekend)
 xyplot(avg ~ interval | day, data = df_final, layout = c(1, 2), type = "l", ylab = "Number of steps taken")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-11-1.png)
+![](PA1_template_files/figure-html/unnamed-chunk-12-1.png)
 
 ##From these graphs we can see that people take more steps during the morning and fewer steps during the afternoon on the weekends than they do during the week.
